@@ -22,7 +22,42 @@
         <span class="logo"></span>
       </header>
 
-      
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <%= link "Home", to: page_path(@conn, :index)%>
+              </li>
+              <%= if @current_user do %>
+                <li>
+                  <%= link "Users", to: user_path(@conn, :index)%>
+                </li>
+                <li>
+                  <%= link "Videos", to: video_path(@conn, :index)%>
+                </li>
+              <% end %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <%= if @current_user do %>
+                <li>
+                  <%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %>
+                </li>
+                <li>
+                  <%= link @current_user.username, to: "#" %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link "Login", to: session_path(@conn, :new)%>
+                </li>
+                <li>
+                  <%= link "Register", to: user_path(@conn, :new)%>
+                </li>
+              <% end %>
+            </ul>
+           </div>
+        </div>
+      </nav>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

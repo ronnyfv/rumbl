@@ -1,7 +1,6 @@
 <h2>Show User</h2>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @user.name %>
@@ -16,7 +15,6 @@
     <strong>Password hash:</strong>
     <%= @user.password_hash %>
   </li>
-
 </ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
